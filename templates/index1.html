@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Management</title>
+    <!-- <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="utils.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+
+        }
+
+        form {
+            display: flex;
+            background-color: white;
+            margin-top: 5%;
+            padding: 25px;
+            height: 500px;
+        }
+
+        .integerInput {
+            margin-right: 10px;
+        }
+
+        .userInput {
+            padding: 5px;
+            margin: 15px;
+        }
+
+        input,
+        select {
+            height: 28px;
+            width: 250px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            display: block;
+            position: absolute;
+            top: 630px;
+            left: 478px;
+            margin-top: 30px;
+            padding: 10px;
+            width: 407px;
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+        }
+
+        header h1 {
+            color: #fff;
+            border: none;
+            font-size: 40px;
+            font-weight: 500;
+            border-radius: 5px;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+        }
+
+        select {
+            margin-top: 8px;
+            height: 36px;
+        }
+
+
+        /* utils css */
+
+        .flex {
+            display: flex;
+        }
+
+        .justify-content {
+            justify-content: center;
+        }
+
+        .text-allign {
+            text-align: center;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .border {
+            border: 2px solid red;
+        }
+
+        .align-items {
+            align-items: center;
+        }
+
+        .flex-direction-c {
+            flex-direction: column;
+        }
+
+        .margin {
+            margin: auto;
+        }
+
+        header h1 {
+            margin-top: 50px;
+        }
+
+        .ml13 {
+            font-size: 1.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            font-weight: 600;
+        }
+
+        .ml13 .letter {
+            display: inline-block;
+            line-height: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <Header>
+        <h1 class="ml13">Supply Chain Management</h1>
+    </Header>
+    <form action="{{url_for('predict')}}" method="POST">
+        <div class="integerInput">
+            <div class="userInput ">
+                <p>Unit of Measure</p>
+                <input type="number" required name="Unit of Measure (Per Pack)" id="">
+            </div>
+            <div class="userInput">
+                <p>Line Item Quantity</p>
+                <input type="number" required name="Line Item Quantity" id="">
+            </div>
+            <div class="userInput">
+                <p>Pack Price</p>
+                <input type="number" required name="Pack Price" id="">
+            </div>
+            <div class="userInput">
+                <p>Unit Price</p>
+                <input type="number" required name="Unit Price" id="">
+            </div>
+            <div class="userInput">
+                <p>Weight (Kg)</p>
+                <input type="number" required name="Weight_Kilograms_Clean" id="">
+            </div>
+        </div>
+        <div class="encodedInput">
+            <div class="userInput">
+                <p>Country</p>
+                <!-- <input type="text"> -->
+                <select name="country_encoded" id="">
+                    <option value="1">South Africa</option>
+                    <option value="2">Nigeria</option>
+                    <option value="3">Côte d'Ivoire</option>
+                    <option value="4">Uganda</option>
+                    <option value="5">Vietnam</option>
+                    <option value="6">Zambia</option>
+                    <option value="7">Haiti</option>
+                    <option value="8">Mozambique</option>
+                    <option value="9">Zimbabwe</option>
+                    <option value="10">Tanzania</option>
+                    <option value="11">Rwanda</option>
+                    <option value="12">Congo, DRC</option>
+                    <option value="13">Guyana</option>
+                    <option value="14">Ethiopia</option>
+                    <option value="15">South Sudan</option>
+                    <option value="16">Kenya</option>
+                    <option value="17">Burundi</option>
+                    <option value="18">Namibia</option>
+                    <option value="19">Cameroon</option>
+                    <option value="20">Botswana</option>
+                    <option value="21">Ghana</option>
+                    <option value="22">Dominican Republic</option>
+                    <option value="23">Sudan</option>
+                    <option value="24">Swaziland</option>
+                    <option value="25">Mali</option>
+                    <option value="26">Pakistan</option>
+                    <option value="27">Guatemala</option>
+                    <option value="28">Malawi</option>
+                    <option value="29">Benin</option>
+                    <option value="30">Lebanon</option>
+                    <option value="31">Libya</option>
+                    <option value="32">Angola</option>
+                    <option value="33">Liberia</option>
+                    <option value="34">Lesotho</option>
+                    <option value="35">Sierra Leone</option>
+                    <option value="36">Togo</option>
+                    <option value="37">Afghanistan</option>
+                    <option value="38">Senegal</option>
+                    <option value="39">Kyrgyzstan</option>
+                    <option value="40">Burkina Faso</option>
+                    <option value="41">Kazakhstan</option>
+                    <option value="42">Guinea</option>
+                    <option value="43">Belize</option>
+                    ​
+                </select>
+            </div>
+            <div class="userInput">
+                <p>Shipment mode</p>
+                <!-- <input type="text"> -->
+                <select name="shipment_mode_encoded" id="">
+                    <option value="1">Air</option>
+                    <option value="2">Truck</option>
+                    <option value="3">Air Charter</option>
+                    <option value="4">Ocean</option>
+                    <option value="0" selected>Not Applicable</option>
+                </select>
+            </div>
+            <div class="userInput">
+                <p>Manufacturing Site</p>
+                <!-- <input type="text"> -->
+                <select name="manufacturing_site_encoded" id="">
+                    <option value="1">Ranbaxy Fine Chemicals LTD</option>
+                    <option value="2">Aurobindo Unit III, India</option>
+                    <option value="3">ABBVIE GmbH & Co.KG Wiesbaden</option>
+                    <option value="4">Ranbaxy, Paonta Shahib, India</option>
+                    <option value="5">Trinity Biotech, Plc</option>
+                    <option value="6">Cipla, Goa, India</option>
+                    <option value="7">Premier Med. Corp Ltd. India</option>
+                    <option value="8">BMS Meymac, France</option>
+                    <option value="9">Chembio Diagnostics Sys. Inc.</option>
+                    <option value="10">ABBVIE Ludwigshafen Germany</option>
+                    <option value="11">Inverness Japan</option>
+                    <option value="12">Pacific Biotech, Thailand</option>
+                    <option value="13">Standard Diagnostics, Korea</option>
+                    <option value="14">Gilead(Nycomed) Oranienburg DE</option>
+                    <option value="15">Bio-Rad Laboratories</option>
+                    <option value="16">Mylan (formerly Matrix) Nashik</option>
+                    <option value="17">Novartis Pharma AG, Switzerland</option>
+                    <option value="18" selected>Not Applicable</option>
+                    <option value="19">Ipca Dadra/Nagar Haveli IN</option>
+                    <option value="20">MSD, Haarlem, NL</option>
+                    <option value="21">Gland Pharma Ltd Pally Factory</option>
+                    <option value="22">ABBVIE (Abbott) Logis. UK</option>
+                    <option value="23">Hetero Unit III Hyderabad IN</option>
+                    <option value="24">ABBVIE (Abbott) France</option>
+                    <option value="25">Strides, Bangalore, India.</option>
+                    <option value="26">Cipla, Patalganga, India</option>
+                    <option value="27">Aspen-OSD, Port Elizabeth, SA</option>
+                    <option value="28">KHB Test Kit Facility, Shanghai China</option>
+                    <option value="29">Inverness USA</option>
+                    <option value="30">MSD Midrand, J'burg, SA</option>
+                    <option value="31">OMEGA Diagnostics, UK</option>
+                    <option value="32">Roche Madrid</option>
+                    <option value="33">INVERNESS ORGENICS LINE</option>
+                    <option value="34">GSK Aranda</option>
+                    <option value="35">Novartis Pharma Suffern, USA</option>
+                    <option value="36">Roche Basel</option>
+                    <option value="37">ABBVIE (Abbott) St. P'burg USA</option>
+                    <option value="38">GSK Mississauga (Canada)</option>
+                    <option value="39">Micro Labs Ltd. (Brown & Burk), India</option>
+                    <option value="40">Meditab (for Cipla) Daman IN</option>
+                    <option value="41">Medopharm Malur Factory, INDIA</option>
+                    <option value="42">Orasure Technologies, Inc USA</option>
+                    <option value="43">Weifa A.S., Hausmanngt. 6, P.O. Box 9113 GrÃ¸nland, 0133, Oslo, Norway</option>
+                    <option value="44">GSK Cape Town Factory (South Africa)</option>
+                    <option value="45">MSD Manati, Puerto Rico, (USA)</option>
+                    <option value="46">MSD Elkton USA</option>
+                    <option value="47">GSK Ware (UK)</option>
+                    <option value="48">MSD Patheon, Canada</option>
+                    <option value="49">GSK Crawley</option>
+                    <option value="50">Emcure Plot No.P-2, I.T-B.T. Park, Phase II, MIDC, Hinjwadi, Pune, India</option>
+                    <option value="51">MSD South Granville Australia</option>
+                    <option value="52">Alere Medical Co., Ltd.</option>
+                    <option value="53">Premier Medical Corporation</option>
+                    <option value="54">Janssen-Cilag, Latina, IT</option>
+                    <option value="55">Aurobindo Unit VII, IN</option>
+                    <option value="56">Micro labs, Verna, Goa, India</option>
+                    <option value="57">Orasure Technologies, Inc</option>
+                    <option value="58">Mylan, H-12 & H-13, India</option>
+                    <option value="59">Hetero, Jadcherla, unit 5, IN</option>
+                    <option value="60">Bristol-Myers Squibb Anagni IT</option>
+                    <option value="61">Medochemie Factory A, CY</option>
+                    <option value="62">Cipla Ltd A-42 MIDC Mahar. IN</option>
+                    <option value="63">bioLytical Laboratories</option>
+                    <option value="64">EY Laboratories, USA</option>
+                    <option value="65">Micro Labs, Hosur, India</option>
+                    <option value="66">Remedica, Limassol, Cyprus</option>
+                    <option value="67">INVERNESS ANY</option>
+                    <option value="68">Guilin OSD site, No 17, China</option>
+                    <option value="69">Cipla, Kurkumbh, India</option>
+                    <option value="70">GSK Barnard Castle UK</option>
+                    <option value="71">Janssen Ortho LLC, Puerto Rico</option>
+                    <option value="72">Gland Pharma, Hyderabad, IN</option>
+                    <option value="73">Access BIO, L.C.</option>
+                    <option value="74">Human Diagnostic</option>
+                    <option value="75">BMS Evansville, US</option>
+                    <option value="76">Mepro Pharm Wadhwan Unit II</option>
+                    <option value="77">Ranbaxy per Shasun Pharma Ltd</option>
+                    <option value="78">Ranbaxy per Shasun Pharma</option>
+                    <option value="79">Macleods Daman Plant INDIA</option>
+
+                </select>
+
+            </div>
+        </div>
+        
+        <button>predict</button>
+    </form>
+    <br>
+    {{prediction_text}}
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+        anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0, -100],
+                opacity: [1, 0],
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i
+            });
+    </script>
+</body>
+
+</html>

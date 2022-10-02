@@ -1,0 +1,24 @@
+.flex{
+    display: flex;
+}
+.justify-content{
+    justify-content: center;
+}
+.text-allign{
+    text-align: center;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+.border{
+    border: 2px solid red;
+}
+.align-items{
+    align-items: center;
+}
+.flex-direction-c{
+    flex-direction: column;
+}
+.margin{
+    margin: auto;
+}
